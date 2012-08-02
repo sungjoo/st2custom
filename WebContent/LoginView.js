@@ -1,8 +1,8 @@
 Ext.define("LoginView", {
 	extend:"Ext.Panel",
 	config: {
-		title: "Login",
+		title: "로그인",
 		style: "background-color: green; color:white;",
-		html: "loginView"
+		html: "로그인 해라~~!!!"
 	}
 });

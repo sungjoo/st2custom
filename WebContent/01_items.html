@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		
+		<title>Sencha Touch</title>
+		
+		<link rel="shortcut icon" href="./image/icon.png">
+		<link rel="apple-touch-icon" href="./image/icon.png">	
+		
+		<link rel="stylesheet" type="text/css" href="./framework/resources/css/sencha-touch.css">
+		<script type="text/javascript" src="./framework/sencha-touch-debug.js"></script>	
+				
+		<script type="text/javascript">
+			Ext.Loader.setConfig({ enabled: true });
+			Ext.application({
+				name: "MyApp",
+				launch: function() {
+					var button = Ext.create("Ext.Button", {
+						text: "Add",
+						handler: function(btn, event) {
+							rootPanel.add(
+								Ext.create("Ext.Button", {
+									text: "Remove",
+									handler: function(btn, e) {
+										rootPanel.remove(btn, true);
+									}
+								})
+							);
+						}
+					});
+
+					var rootPanel = Ext.create("Ext.Panel", {
+						items: [ button ]
+					});
+					Ext.Viewport.add(rootPanel);
+				}
+			});
+		</script>		
+	</head>		
+	<body>	
+	</body>
+</html>
