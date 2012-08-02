@@ -13,24 +13,28 @@
 		<script type="text/javascript" src="./framework/sencha-touch-debug.js"></script>	
 				
 		<script type="text/javascript">
-			Ext.Loader.setConfig({ enabled: true });
-			Ext.application({
+			Ext.Loader.setConfig({ enabled: true });			// 자동 코드 리로딩 하도록 해줌.
+			Ext.application({										
 				name: "MyApp",
 				launch: function() {
-					var button = Ext.create("Ext.Button", {
+					var removeBtn = function(btn, e) {			// 버튼 클릭시에 이벤트를 작동시킬수 있는 핸들러~
+						rootPanel.remove(btn, true);
+					}
+					
+					var addRemoveBtn = function(btn, event) {
+						rootPanel.add(
+							Ext.create("Ext.Button", {				// 버튼 생성 (2)
+								text: "Remove",
+								handler: removeBtn                    // 버튼 클릭시에 이벤트를 작동시킬수 있는 핸들러~
+							})
+						);
+					};
+					
+					var button = Ext.create("Ext.Button", {		// 버튼 생성 (1)
 						text: "Add",
-						handler: function(btn, event) {
-							rootPanel.add(
-								Ext.create("Ext.Button", {
-									text: "Remove",
-									handler: function(btn, e) {
-										rootPanel.remove(btn, true);
-									}
-								})
-							);
-						}
+						handler: addRemoveBtn
 					});
-
+					
 					var rootPanel = Ext.create("Ext.Panel", {
 						items: [ button ]
 					});
